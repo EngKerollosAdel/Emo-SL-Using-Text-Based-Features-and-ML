@@ -132,9 +132,13 @@ def main():
     emojis = set(Configuration.fetch_data_from_file(Configuration.FileName.emojis))
     
     # Example tweets
-    tweets = Configuration.fetch_tweets()
-    
-    
+    tweets = [  # Example tweets
+        "أنا سعيد 😊",
+        "أنا حزين 😢",
+        "أنا جيد 👍",
+        "أنا سيء 😡"
+    ]   
+       
     
     # Instantiate EmoSL for Arabic Sentiment Analysis
     emosl = EmoSLArabicTweets(positive_lexicon, negative_lexicon)

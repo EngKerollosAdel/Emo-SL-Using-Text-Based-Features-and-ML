@@ -137,8 +137,6 @@ class EmoSLApp:
                 else:
                     total_negative_emojis[emoji] = count
 
-
-
             # Algorithm 4 Calculating Emoji Sentiment Scores
             # Calculate sentiment scores
             emoji_sentiment_scores = calculate_sentiment_scores(total_positive_emojis, total_negative_emojis)
@@ -150,8 +148,6 @@ class EmoSLApp:
 
             print("\nEmoji Sentiment Scores (Detailed):")
             print(emoji_sentiment_scores)
-
-
 
             # Algorithm 5 Emo-SL for Arabic Tweets Algorithm
             # Example lexicons
