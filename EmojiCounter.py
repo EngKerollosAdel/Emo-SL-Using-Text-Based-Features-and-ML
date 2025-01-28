@@ -6,6 +6,10 @@ from Configuration import Configuration
 
 class FeatureVector:
     def __init__(self):
+        """
+        Initializes the feature vector to store counts and scores for sentiment analysis features.
+        This includes positive/negative words, emojis, and their sentiment scores.
+        """
         self.positive_words_count = 0
         self.negative_words_count = 0
         self.positive_emojis_count = 0
@@ -17,6 +21,9 @@ class FeatureVector:
         self.sentiment = ""  # Will be determined dynamically
 
     def to_dict(self):
+        """
+        Convert the feature vector into a dictionary for easy representation.
+        """
         return {
             "positive_words_count": self.positive_words_count,
             "negative_words_count": self.negative_words_count,
@@ -30,29 +37,50 @@ class FeatureVector:
         }
 
     def __str__(self):
+        """
+        Return the feature vector in a detailed JSON-like format for display.
+        """
         return json.dumps(self.to_dict(), indent=4, ensure_ascii=False)
     
     def to_one_line(self):
+        """
+        Return the feature vector in a compact JSON string for easier logging or display.
+        """
         return json.dumps(self.to_dict(), ensure_ascii=False)
 
 
 class SentimentFeatureExtractor:
     def __init__(self):
+        """
+        Initializes the sentiment and emoji lexicons from the configuration.
+        These lexicons provide sentiment scores for words and emojis.
+        """
         self.SENTIMENT_LEXICON =  Configuration.fetch_setting(Configuration.SheetName.sentiment_lexicon)
         self.EMOJI_SENTIMENT_LEXICON =  Configuration.fetch_setting(Configuration.SheetName.emoji_sentiment_lexicon)
 
     def tokenize(self, text):
-        # Tokenize text into words using regex
+        """
+        Tokenizes the input text into individual words for feature extraction.
+        Uses a regex pattern to match word boundaries.
+        """
         return re.findall(r'\b\w+\b', text)
 
     def extract_emojis(self, text):
-        # Extract only valid emojis (filter out non-emoji punctuation)
+        """
+        Extracts emojis from the input text.
+        Emojis are essential as they often carry sentiment information.
+        """
         return [char for char in text if char in self.EMOJI_SENTIMENT_LEXICON]
 
     def extract_features_from_tweet(self, tweet):
+        """
+        Extracts sentiment features from a single tweet, including both text-based and emoji-based features.
+        """
         feature_vector = FeatureVector()
 
+        # -------------------------
         # Extract text-based features
+        # -------------------------
         words = self.tokenize(tweet)
         for word in words:
             if word in self.SENTIMENT_LEXICON:
@@ -64,7 +92,9 @@ class SentimentFeatureExtractor:
                     feature_vector.negative_words_count += 1
                     feature_vector.negative_score += sentiment_score
 
+        # -------------------------
         # Extract emoji-based features
+        # -------------------------
         emojis = self.extract_emojis(tweet)
         feature_vector.total_emojis_count = len(emojis)
         feature_vector.emojis = emojis  # Store the emojis
@@ -77,7 +107,9 @@ class SentimentFeatureExtractor:
                 feature_vector.negative_emojis_count += 1
                 feature_vector.negative_score += sentiment_score
 
-        # Determine sentiment based on overall positive/negative score
+        # -------------------------
+        # Determine sentiment
+        # -------------------------
         if feature_vector.positive_score > feature_vector.negative_score:
             feature_vector.sentiment = Configuration.Sentiment.positive
         else:
@@ -88,6 +120,10 @@ class SentimentFeatureExtractor:
 
 # Algorithm 3: Counting Emoji Occurrences
 def count_emojis(feature_vector, extractor):
+    """
+    Counts the occurrences of each emoji in the tweet, categorizing them as positive or negative
+    based on sentiment scores obtained from the emoji sentiment lexicon.
+    """
     # Dictionaries to store emoji counts for both positive and negative sentiments
     positive_emojis = {}
     negative_emojis = {}
@@ -111,7 +147,11 @@ def count_emojis(feature_vector, extractor):
 
 # Main function to demonstrate usage
 def main():
-    tweets =  Configuration.fetch_tweets()
+    """
+    Main function that demonstrates the usage of sentiment feature extraction and emoji counting.
+    It processes each tweet, extracts sentiment features, counts emoji occurrences, and aggregates the counts.
+    """
+    tweets =  Configuration.fetch_tweets()  # Fetch a dataset of tweets
     
     extractor = SentimentFeatureExtractor()
     total_positive_emojis = {}

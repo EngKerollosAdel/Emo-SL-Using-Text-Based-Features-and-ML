@@ -13,6 +13,7 @@ class EmoSLArabicTweets:
         :param positive_lexicon: List of positive words.
         :param negative_lexicon: List of negative words.
         """
+        # Initialize the positive and negative lexicons and prepare a dictionary for emoji sentiment scores
         self.positive_lexicon = set(positive_lexicon)
         self.negative_lexicon = set(negative_lexicon)
         self.emoji_sentiment_lexicon = {}
@@ -27,8 +28,10 @@ class EmoSLArabicTweets:
         """
         processed_tweets = []
         for tweet in tweets:
-            tweet = re.sub(r'[^\u0600-\u06FF\s]', '', tweet)  # Remove non-Arabic characters
-            tweet = tweet.lower()  # Normalize text to lowercase
+            # Remove non-Arabic characters and symbols
+            tweet = re.sub(r'[^\u0600-\u06FF\s]', '', tweet)
+            # Normalize the text by converting to lowercase
+            tweet = tweet.lower()
             processed_tweets.append(tweet)
         return processed_tweets
 
@@ -41,14 +44,14 @@ class EmoSLArabicTweets:
         """
         emoji_counts = {emoji: {Configuration.Sentiment.positive: 0, Configuration.Sentiment.negative: 0} for emoji in emojis}
 
-        # Count positive and negative emoji occurrences
+        # Count positive and negative emoji occurrences in the tweets
         for tweet in tweets:
             sentiment = Configuration.Sentiment.positive if any(word in tweet for word in self.positive_lexicon) else Configuration.Sentiment.negative
             tweet_emojis = [char for char in tweet if char in emojis]
             for emoji in tweet_emojis:
                 emoji_counts[emoji][sentiment] += 1
 
-        # Calculate emoji sentiment scores
+        # Calculate emoji sentiment scores (positive / total occurrences)
         for emoji, counts in emoji_counts.items():
             p = counts[Configuration.Sentiment.positive]
             n = counts[Configuration.Sentiment.negative]
@@ -65,19 +68,19 @@ class EmoSLArabicTweets:
         """
         features = []
         for tweet in tweets:
-            # Feature 1: Emoji sentiment scores
+            # Feature 1: Emoji sentiment scores for emojis present in the tweet
             emoji_features = [self.emoji_sentiment_lexicon.get(emoji, 0) for emoji in emojis if emoji in tweet]
 
-            # Feature 2: Count of positive and negative words
+            # Feature 2: Count of positive and negative words in the tweet
             positive_count = sum(1 for word in tweet.split() if word in self.positive_lexicon)
             negative_count = sum(1 for word in tweet.split() if word in self.negative_lexicon)
 
-            # Normalize features
+            # Normalize the word counts by the total number of words
             total_words = len(tweet.split())
             normalized_positive = positive_count / total_words if total_words else 0
             normalized_negative = negative_count / total_words if total_words else 0
 
-            # Combine all features
+            # Combine all features into one vector
             features.append({
                 'emoji_features': emoji_features,
                 'positive_count': normalized_positive,
@@ -94,7 +97,9 @@ class EmoSLArabicTweets:
         :return: Sentiment classification for each tweet.
         """
         for tweet, feature_vector in zip(tweets, features):
+            # Calculate sentiment score based on the features
             score = sum(feature_vector['emoji_features']) + feature_vector['positive_count'] - feature_vector['negative_count']
+            # Classify sentiment based on the score
             sentiment = Configuration.Sentiment.positive if score > 0 else Configuration.Sentiment.negative if score < 0 else 'Neutral'
             self.sentiment_results[tweet] = sentiment
         return self.sentiment_results
@@ -106,7 +111,7 @@ class EmoSLArabicTweets:
         :param tweet: The tweet to analyze.
         :return: Sentiment score using VADER (mocked as random).
         """
-        # In reality, you'd translate the tweet to English and use VADER
+        # Placeholder for real VADER analysis; the tweet would typically be translated to English
         sentiment_score = 0  # Placeholder
         return sentiment_score
 
@@ -138,7 +143,6 @@ def main():
         "أنا جيد 👍",
         "أنا سيء 😡"
     ]   
-       
     
     # Instantiate EmoSL for Arabic Sentiment Analysis
     emosl = EmoSLArabicTweets(positive_lexicon, negative_lexicon)
@@ -164,3 +168,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
