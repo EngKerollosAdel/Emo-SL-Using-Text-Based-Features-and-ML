@@ -104,16 +104,35 @@ class EmoSLArabicTweets:
             self.sentiment_results[tweet] = sentiment
         return self.sentiment_results
 
-    def apply_vader(self, tweet):
+    def apply_vader(self, tweet ):
         """
-        Apply VADER for sentiment analysis (mocked as we are working with Arabic).
+        Apply a mock VADER for sentiment analysis based on specific words in Arabic tweets.
         
         :param tweet: The tweet to analyze.
-        :return: Sentiment score using VADER (mocked as random).
+        :return: Sentiment score (positive or negative) based on the presence of sentiment words.
         """
-        # Placeholder for real VADER analysis; the tweet would typically be translated to English
-        sentiment_score = 0  # Placeholder
-        return sentiment_score
+        # Sentiment words mapping (mocked as we don't have the actual VADER model for Arabic) 
+        # Positive lexicon    
+        positive_words = Configuration.fetch_data_from_file(Configuration.FileName.positive_lexicon)
+        # Negative lexicon
+        negative_words = Configuration.fetch_data_from_file(Configuration.FileName.negative_lexicon)
+
+        sentiment_score = 0
+
+        # Check if tweet contains positive or negative words and calculate a score
+        for word in tweet.split():
+            if word in positive_words:
+                sentiment_score += 1  # Positive sentiment increases the score
+            elif word in negative_words:
+                sentiment_score -= 1  # Negative sentiment decreases the score
+        
+        # Return sentiment score (range from -1 to 1)
+        if sentiment_score > 0:
+            return 1  # Positive sentiment
+        elif sentiment_score < 0:
+            return -1  # Negative sentiment
+        else:
+            return 0  # Neutral sentiment
 
     def analyze_tweets_with_vader(self, tweets):
         """
@@ -127,45 +146,50 @@ class EmoSLArabicTweets:
             vader_scores[tweet] = self.apply_vader(tweet)
         return vader_scores
 
-# Example usage:
 def main():
-    # Example lexicons
+    # Positive lexicon    
     positive_lexicon = Configuration.fetch_data_from_file(Configuration.FileName.positive_lexicon)
+    # Negative lexicon
     negative_lexicon = Configuration.fetch_data_from_file(Configuration.FileName.negative_lexicon)
-    
+
     # Example emojis
-    emojis = set(Configuration.fetch_data_from_file(Configuration.FileName.emojis))
-    
+    emojis = {
+        "😊": 0.9,
+        "😢": -0.8,
+        "👍": 0.7,
+        "😡": -1
+    }
+
     # Example tweets
-    tweets = [  # Example tweets
+    tweets = [
         "أنا سعيد 😊",
         "أنا حزين 😢",
         "أنا جيد 👍",
         "أنا سيء 😡"
-    ]   
+    ] 
     
     # Instantiate EmoSL for Arabic Sentiment Analysis
     emosl = EmoSLArabicTweets(positive_lexicon, negative_lexicon)
 
     # Step 1: Preprocess the tweets
     preprocessed_tweets = emosl.preprocess_data(tweets)
+    print("Preprocessed Tweets:", preprocessed_tweets)
     
     # Step 2: Build the Emoji Sentiment Lexicon
     emosl.build_emo_sl(preprocessed_tweets, emojis)
+    print("Emoji Sentiment Lexicon:", emosl.emoji_sentiment_lexicon)
     
     # Step 3: Extract features
     features = emosl.extract_features(preprocessed_tweets, emojis)
+    print("Extracted Features:", features)
     
     # Step 4: Classify sentiments
     sentiment_results = emosl.classify_sentiments(preprocessed_tweets, features)
+    print("Sentiment Classification Results:", sentiment_results)
     
     # Step 5: Apply VADER analysis (mocked)
     vader_scores = emosl.analyze_tweets_with_vader(preprocessed_tweets)
-    
-    # Print results
-    print("Sentiment Classification Results:", sentiment_results)
     print("VADER Sentiment Scores (mocked):", vader_scores)
 
 if __name__ == "__main__":
     main()
-
