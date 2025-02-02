@@ -1,4 +1,4 @@
-Here's the formatted content for your `README.md`:
+# FILE: /emoji-sentiment-lexicon/emoji-sentiment-lexicon/README.md
 
 ```
 # 🎓 Emo-SL Using Text-Based Features and Machine Learning
