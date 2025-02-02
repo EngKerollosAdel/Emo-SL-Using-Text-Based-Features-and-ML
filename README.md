@@ -8,25 +8,25 @@ This project aims to preprocess Arabic tweets for sentiment analysis using vario
 ```
 Emo-SL-Using-Text-Based-Features-and-ML-master/
 ├── 📂 Data/
-│   ├── 📄 sentiment_lexicon.xlsx       - Excel file containing sentiment lexicon
-│   ├── 📄 stop_words.txt               - Text file containing stop words
-│   ├── 📄 tweets.txt                   - Text file containing tweets data
-│   ├── 📄 emojis.txt                   - Text file containing emojis data
-│   ├── 📄 positive_lexicon.txt         - Text file containing positive lexicon
-│   ├── 📄 negative_lexicon.txt         - Text file containing negative lexicon
-│   └── 📄 additional_data.txt          - Placeholder for any additional data files
+│   ├── 📄 sentiment_lexicon.xlsx       # Excel file containing sentiment lexicon
+│   ├── 📄 stop_words.txt               # Text file containing stop words
+│   ├── 📄 tweets.txt                   # Text file containing tweets data
+│   ├── 📄 emojis.txt                   # Text file containing emojis data
+│   ├── 📄 positive_lexicon.txt         # Text file containing positive lexicon
+│   ├── 📄 negative_lexicon.txt         # Text file containing negative lexicon
+│   └── 📄 additional_data.txt          # Placeholder for any additional data files
 ├── 📂 src/
-│   ├── 🛠️ Configuration.py             - Configuration settings and utility functions
-│   ├── 🛠️ Excel_Helper.py              - Helper functions for creating and managing Excel files
-│   ├── 🛠️ main.py                      - Main script to run the project
-│   ├── 🛠️ SentimentFeatureExtractor.py - Functions to extract sentiment features from text
-│   ├── 🛠️ TextPreprocessor.py          - Functions to preprocess Arabic text
-│   ├── 🛠️ TrainingSet.py               - Functions to manage training datasets
-│   └── 🛠️ additional_module.py         - Placeholder for any additional source files
-├── 📄 requirements.txt                 - List of required Python libraries
-├── 📄 ReadMe.md                        - Project description and setup instructions
-├── 🛡️ setup.bat                        - Batch script to automate setup (Windows)
-└── 🛡️ setup.sh                         - Shell script to automate setup (macOS/Linux)
+│   ├── 🛠️ Configuration.py             # Configuration settings and utility functions
+│   ├── 🛠️ Excel_Helper.py              # Helper functions for creating and managing Excel files
+│   ├── 🛠️ main.py                      # Main script to run the project
+│   ├── 🛠️ SentimentFeatureExtractor.py # Functions to extract sentiment features from text
+│   ├── 🛠️ TextPreprocessor.py          # Functions to preprocess Arabic text
+│   ├── 🛠️ TrainingSet.py               # Functions to manage training datasets
+│   └── 🛠️ additional_module.py         # Placeholder for any additional source files
+├── 📄 requirements.txt                 # List of required Python libraries
+├── 📄 ReadMe.md                        # Project description and setup instructions
+├── 🛡️ setup.bat                        # Batch script to automate setup (Windows)
+└── 🛡️ setup.sh                         # Shell script to automate setup (macOS/Linux)
 ```
 
 
