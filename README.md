@@ -117,13 +117,13 @@ python src/main.py
 ## 📚 Project Description
 
 This project preprocesses Arabic tweets for sentiment analysis using various text-based features and machine learning techniques. The main steps include:
-
+```
 1️⃣ Preprocess the Tweets: Clean and normalize the Arabic text.
 2️⃣ Build the Emoji Sentiment Lexicon: Create a lexicon of emojis with their associated sentiment scores.
 3️⃣ Extract Features: Extract relevant features from the preprocessed tweets.
 4️⃣ Classify Sentiments: Classify the sentiment of the tweets using the extracted features.
 5️⃣ Apply VADER Analysis: (Mocked) Apply VADER sentiment analysis to the tweets.
-
+```
 ─────────────────────────────────────────────────────────
 
 ## 🤝 Contributing
