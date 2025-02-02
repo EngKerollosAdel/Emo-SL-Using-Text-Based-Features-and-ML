@@ -1,3 +1,6 @@
+Here's the formatted content for your `README.md`:
+
+```
 # 🎓 Emo-SL Using Text-Based Features and Machine Learning
 
 This project aims to preprocess Arabic tweets for sentiment analysis using various text-based features and machine learning techniques.
@@ -46,29 +49,31 @@ Emo-SL-Using-Text-Based-Features-and-ML-master/
 
 1️⃣ Ensure the `requirements.txt` file contains the following content:
 
+```
 arabic-reshaper  
 python-bidi  
 pandas  
 openpyxl  
 emoji  
-joblib  
+joblib
+```
 
 2️⃣ Install the required libraries using:  
-bash
+```bash
 pip install -r requirements.txt
-
+```
 
 #### ⚙️ Option 2: Install Libraries Individually  
 
 💡 If any installation fails, use the following commands:  
-bash
+```bash
 pip install arabic-reshaper  
 pip install python-bidi  
 pip install pandas  
 pip install openpyxl  
 pip install emoji  
 pip install joblib  
-
+```
 
 ─────────────────────────────────────────────────────────
 
@@ -77,29 +82,29 @@ pip install joblib
 Automate the setup process using the provided scripts:
 
 #### 🖥️ **Windows**  
-bash
+```bash
 setup.bat
-
+```
 
 #### 🖥️ **macOS/Linux**  
-bash
+```bash
 chmod +x setup.sh  
 ./setup.sh  
-
+```
 
 ─────────────────────────────────────────────────────────
 
 ## 🚀 Usage  
 
 ### 🔍 1. Navigate to the Project Directory  
-bash
+```bash
 cd "D:/Other/Private/Master/Project/Emo-SL-Using-Text-Based-Features-and-ML-master/Emo-SL-Using-Text-Based-Features-and-ML-master"
-
+```
 
 ### 🔧 2. Run the Main Script  
-bash
+```bash
 python src/main.py
-
+```
 
 ─────────────────────────────────────────────────────────
 
@@ -121,7 +126,6 @@ This project preprocesses Arabic tweets for sentiment analysis using various tex
 Feel free to submit a pull request or open an issue for suggestions or improvements.
 
 ─────────────────────────────────────────────────────────
- 
+```
 
-
-This version keeps the content intact, includes visual enhancements, and is formatted as plain text, perfect for a GitHub README or simple text file.
+This structure should now be ready for your `README.md`. Let me know if you'd like any adjustments!
