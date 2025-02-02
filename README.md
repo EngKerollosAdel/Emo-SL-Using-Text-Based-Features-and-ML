@@ -5,7 +5,7 @@ This project aims to preprocess Arabic tweets for sentiment analysis using vario
 ─────────────────────────────────────────────────────────
 
 ## 📁 Project Structure  
-
+```
 Emo-SL-Using-Text-Based-Features-and-ML-master/
 ├── 📂 Data/
 │   ├── 📄 sentiment_lexicon.xlsx       - Excel file containing sentiment lexicon
@@ -27,7 +27,7 @@ Emo-SL-Using-Text-Based-Features-and-ML-master/
 ├── 📄 ReadMe.md                        - Project description and setup instructions
 ├── 🛡️ setup.bat                        - Batch script to automate setup (Windows)
 └── 🛡️ setup.sh                         - Shell script to automate setup (macOS/Linux)
-
+```
 
 
 
