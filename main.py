@@ -1,3 +1,4 @@
+import time
 from Configuration import Configuration
 from EmoSLArabicTweets import EmoSLArabicTweets
 from EmojiCounter import count_emojis
@@ -8,6 +9,11 @@ from TextPreprocessor import TextPreprocessor
 
 
 def main():
+
+    # Start time
+    start_time = time.time()
+
+
     # Create an instance of the ExcelHelper class
     excel_helper = ExcelHelper()
 
@@ -116,5 +122,8 @@ def main():
     # Create the Excel file
     excel_helper.create_excel()
 
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Execution time: {execution_time} seconds")
 if __name__ == "__main__":
     main()

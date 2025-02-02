@@ -57,6 +57,9 @@ class SentimentFeatureExtractor:
         self.SENTIMENT_LEXICON = Configuration.fetch_setting(Configuration.SheetName.sentiment_lexicon)
         self.EMOJI_SENTIMENT_LEXICON = Configuration.fetch_setting(Configuration.SheetName.emoji_sentiment_lexicon)
 
+        self.all_emojis = Configuration.fetch_data_from_file(Configuration.FileName.emojis)
+
+
     def tokenize(self, text):
         """
         Tokenizes the input text into individual words for feature extraction.
@@ -66,10 +69,10 @@ class SentimentFeatureExtractor:
 
     def extract_emojis(self, text):
         """
-        Extracts emojis from the input text.
-        Emojis are essential as they often carry sentiment information.
+        Extracts emojis from the input text by checking if they are in the predefined emoji list.
         """
-        return re.findall(r'[^\w\s]', text)
+        return [char for char in text if char in self.all_emojis]
+
 
     def extract_features_from_tweet(self, tweet):
         """
@@ -133,9 +136,9 @@ def main():
         print(feature_vector)  # Display the detailed feature vector
         print("-" * 50)
 
-        print("Extracted Features (One-Line Format):")
-        print(feature_vector.to_one_line())  # Display the one-line feature vector
-        print("-" * 50)
+        # print("Extracted Features (One-Line Format):")
+        # print(feature_vector.to_one_line())  # Display the one-line feature vector
+        # print("-" * 50)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,54 @@
+Emo-SL-Using-Text-Based-Features-and-ML-master/
+│
+├── Data/
+│   ├── sentiment_lexicon.xlsx       # Excel file containing sentiment lexicon
+│   ├── stop_words.txt               # Text file containing stop words
+│   ├── tweets.txt                   # Text file containing tweets data
+│   ├── emojis.txt                   # Text file containing emojis data
+│   ├── positive_lexicon.txt         # Text file containing positive lexicon
+│   ├── negative_lexicon.txt         # Text file containing negative lexicon
+│   └── additional_data.txt          # Placeholder for any additional data files
+│
+├── src/
+│   ├── Configuration.py             # Configuration settings and utility functions
+│   ├── Excel_Helper.py              # Helper functions for creating and managing Excel files
+│   ├── main.py                      # Main script to run the project
+│   ├── SentimentFeatureExtractor.py # Functions to extract sentiment features from text
+│   ├── TextPreprocessor.py          # Functions to preprocess Arabic text
+│   ├── TrainingSet.py               # Functions to manage training datasets
+│   └── additional_module.py         # Placeholder for any additional source files
+│
+├── requirements.txt                 # List of required Python libraries
+├── ReadMe.txt                       # Project description and setup instructions
+├── setup.bat                        # Batch script to automate setup (Windows)
+└── setup.sh                         # Shell script to automate setup (macOS/Linux)
+
+
+
+Descriptions:
+Data/: This directory contains all the data files used in the project.
+
+sentiment_lexicon.xlsx: An Excel file containing the sentiment lexicon used for sentiment analysis.
+stop_words.txt: A text file containing stop words that should be excluded from analysis.
+tweets.txt: A text file containing the tweets data to be analyzed.
+emojis.txt: A text file containing emojis data.
+positive_lexicon.txt: A text file containing positive lexicon.
+negative_lexicon.txt: A text file containing negative lexicon.
+additional_data.txt: Placeholder for any additional data files.
+src/: This directory contains all the source code files for the project.
+
+Configuration.py: Contains configuration settings and utility functions used throughout the project.
+Excel_Helper.py: Contains helper functions for creating and managing Excel files.
+main.py: The main script that runs the project, orchestrating the various steps of the analysis.
+SentimentFeatureExtractor.py: Contains functions to extract sentiment features from text.
+TextPreprocessor.py: Contains functions to preprocess Arabic text, including normalization and cleaning.
+TrainingSet.py: Contains functions to manage training datasets, including fetching tweets and settings.
+additional_module.py: Placeholder for any additional source files.
+requirements.txt: A file listing all the required Python libraries for the project. This can be used to install dependencies using pip.
+
+ReadMe.txt: A text file containing the project description and setup instructions.
+
+setup.bat: A batch script to automate the setup process on Windows. It installs required libraries and runs the main script.
+
+setup.sh: A shell script to automate the setup process on macOS/Linux. It installs required libraries and runs the main script.
+

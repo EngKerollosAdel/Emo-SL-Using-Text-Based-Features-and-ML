@@ -2,6 +2,8 @@
 # This algorithm aims to clean and preprocess Arabic text for sentiment analysis. 
 # It incorporates several text normalization and filtering steps based on linguistic properties specific to Arabic.
 import re
+import arabic_reshaper
+from bidi.algorithm import get_display
 
 from Configuration import Configuration 
 
@@ -158,3 +160,22 @@ class TextPreprocessor:
         text = TextPreprocessor.remove_stop_words(text)
 
         return text
+    
+def main():
+    # Arabic text examples
+    examples = [
+        "أحببت فيلم كثيراً قصة مؤثرة تمثيل رائع 😍🎥",
+        "شعرت خيبة انا أمل خدمة اليوم أتوقع أفضل 😞💔"
+    ]
+
+    # Process and display the text
+    print("نتائج المعالجة:")
+    for example in examples:
+        preprocessed_text = TextPreprocessor.preprocess_text(example)
+        print("النص الأصلي:", example)
+        print("النص بعد المعالجة:", preprocessed_text)
+        print("=" * 50)
+
+if __name__ == "__main__":
+    main()
+

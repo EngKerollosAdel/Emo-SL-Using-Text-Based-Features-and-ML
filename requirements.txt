@@ -1,0 +1,6 @@
+arabic-reshaper 
+python-bidi 
+pandas 
+openpyxl 
+emoji 
+joblib 
